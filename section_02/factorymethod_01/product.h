@@ -5,8 +5,11 @@ struct product_info {
   char device_id[20];
 };
 
+
+struct product;
+
 struct product_ops {
-  void (* show) (void);
+  void (* show) (struct product *);
 };
 
 struct product {

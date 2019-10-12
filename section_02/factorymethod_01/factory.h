@@ -2,6 +2,7 @@
 #define _FACTORY_H_
 
 #include "product.h"
+#include "../../utils/list.h"
 
 struct factory_info {
   char f_name [20];
@@ -15,10 +16,16 @@ struct factory{
   struct factory_ops *ops;
   struct factory_info *info;
   void * private_data;
+  struct list_head list;
 };
 
-int factory_init(void);
+
 struct factory * get_factory_by_brand (const char *brand);
 struct product * factory_new_product (const char* brand);
+
+int register_factory(struct factory * fp);
+int unregister_factory(const char * brand);
+
+int factory_init(void);
 
 #endif
