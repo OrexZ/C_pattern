@@ -18,7 +18,7 @@ int app_exec(){
   rect_area = rectangle_get_area(rect_shape_p);
   rectangle_get_center_point(rect_shape_p, &center);
 
-  printf("< rectangle - area: %f, coordinate: (%f, %f) >\n",
+  printf("< rectangle - area: %.2f, coordinate: (%.2f, %.2f) >\n",
          rect_area,
          center.x,
          center.y);
