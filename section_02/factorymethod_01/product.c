@@ -60,7 +60,7 @@ struct product * new_tv (const char * brand){
   }
 }
 
-void destory_product(struct product * tv){
+void destroy_product(struct product * tv){
   free(tv);
 }
 

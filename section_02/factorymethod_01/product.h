@@ -18,6 +18,6 @@ struct product {
 };
 
 struct product * new_tv (const char *);
-void destory_product(struct product *);
+void destroy_product(struct product *);
 
 #endif
