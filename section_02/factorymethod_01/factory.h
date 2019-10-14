@@ -2,7 +2,8 @@
 #define _FACTORY_H_
 
 #include "product.h"
-#include "../../utils/list.h"
+/* #include "../../utils/list.h" */
+#include "list.h"
 
 struct factory_info {
   char f_name [20];

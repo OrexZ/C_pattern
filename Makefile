@@ -14,7 +14,7 @@ SUBDIRS := $(filter-out $(notdir $(UTILS)),$(_SUBDIRS))
 CLRDIRS := $(addsuffix .clean,$(SUBDIRS))
 
 export CC = gcc
-export CFLAGS =
+export CFLAGS = -I$(UTILS)
 
 
 default: all

@@ -1,5 +1,6 @@
 #include "factory.h"
 #include <stdio.h>
+#include <string.h>
 
 static struct product * TCL_new_product (void *private_data){
   struct factory * tcl = (struct factory *) private_data;
