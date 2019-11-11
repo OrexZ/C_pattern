@@ -8,7 +8,7 @@ int main(int argc, char **argv){
     struct matchmaker * mm = malloc(sizeof(struct matchmaker));
 
     struct girl * g = malloc(sizeof(struct girl));
-#define GIRL_PATIENT_SIZE 100
+#define GIRL_PATIENT_SIZE 200
     char * girl_patient = malloc(GIRL_PATIENT_SIZE);
 
     init_girl(g, girl_patient, GIRL_PATIENT_SIZE);

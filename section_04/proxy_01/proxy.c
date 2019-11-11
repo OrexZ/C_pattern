@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define min(a,b) ((a > b) ? (a) : (b))
+#define min(a,b) ((a > b) ? (b) : (a))
 
 static int boy_express(struct action * self, char * msg, int size){
     struct boy * _b = (struct boy *) self; 
@@ -14,14 +14,10 @@ static int boy_express(struct action * self, char * msg, int size){
         exit(-1);
     }
 
-    snprintf(msg, size, "name: %s, tall: %d, work: %s\n",
+    used = snprintf(msg, size, "BOY> name: %s, tall: %d, work: %s\n",
                 _b->info->name, _b->info->tall, _b->info->work);
 
-    used = min(size, strlen(_b->info->name) +
-            sizeof(_b->info->tall) +
-            strlen(_b->info->work));
-
-    return used;
+    return min(size, used);
 }
 
 static int matchmaker_express(struct action * self, char * msg, int size){
@@ -29,7 +25,7 @@ static int matchmaker_express(struct action * self, char * msg, int size){
     struct boy * bi = mm->boy_p;
     int used = 0;
     int valid_len, spare_len;
-    char * more = "He is the son of the president.";
+    char * more = "MatchMaker> He is the son of the president.";
 
     used = bi->act.express((struct action *) bi, msg, size);
 
@@ -38,20 +34,17 @@ static int matchmaker_express(struct action * self, char * msg, int size){
         printf("D> no enough msg to send... ");
     }
 
-    valid_len = min(spare_len, strlen(more));
-
-    snprintf(msg+used, valid_len, "%s", more);
+    /* NOTE: +2 mean: '\n' + '\0' */
+    valid_len  = snprintf(msg+used, min(spare_len, strlen(more)) +2, "%s\n", more);
 
     return valid_len + used;
 }
 
 static int matchmaker_more_info(void * priv, char *msg, int size){
-    char * competitive_info = "Other girls like this boy too";
-    int used;
-
-    used = snprintf(msg, size, "%s", competitive_info);
-    return used;
+    char * competitive_info = "MORE> Other girls like this boy too";
+    return snprintf(msg, size, "%s", competitive_info);
 }
+
 
 int init_boy_info(struct boy_info * ip, char * name, int tall, char * work){
     strcpy(ip->name, name);
